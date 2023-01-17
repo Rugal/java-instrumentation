@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>ga.rugal</groupId>
+    <artifactId>instrumentation-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>application</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+
+  <name>Java Instrumentation application</name>
+
+  <properties>
+  </properties>
+
+  <dependencies>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!--
+          Test
+      -->
+      <!--
+        packaging
+      -->
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>ga.rugal.Main</mainClass>
+            </manifest>            
+          </archive>
+        </configuration>
+      </plugin>
+      <!--
+        deploy
+      -->
+      <!--
+        report
+      -->
+    </plugins>
+  </build>
+</project>

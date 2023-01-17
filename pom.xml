@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>ga.rugal</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.15.0</version>
+  </parent>
+
+  <artifactId>instrumentation-parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Java Instrumentation API parent</name>
+  <url>https://github.com/Rugal/git-cleaner.git</url>
+
+  <scm>
+    <connection>scm:git:ssh://git@github.com:Rugal/git-cleaner.git</connection>
+    <developerConnection>${project.scm.connection}</developerConnection>
+    <url>${project.url}</url>
+    <tag>HEAD</tag>
+  </scm>
+  <properties>
+    <java.version>17</java.version>
+    <!-- test switch -->
+    <skip.surefire.tests>true</skip.surefire.tests>
+    <skip.failsafe.tests>true</skip.failsafe.tests>
+    <jacoco.skip.coverage.check>true</jacoco.skip.coverage.check>
+    <!--
+      dependency
+    -->
+    <!--
+      plugin
+    -->
+    <spotbugs.plugin.version>4.7.3.0</spotbugs.plugin.version>
+    <pmd.plugin.version>3.19.0</pmd.plugin.version>
+    <jacoco.plugin.version>0.8.8</jacoco.plugin.version>
+  </properties>
+
+  <modules>
+    <module>agent</module>
+    <module>application</module>
+  </modules>
+
+
+  <dependencyManagement>
+    <dependencies>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- Auto Append -->
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!--
+        initialization
+      -->
+      <!-- git commit id -->
+      <plugin>
+        <groupId>pl.project13.maven</groupId>
+        <artifactId>git-commit-id-plugin</artifactId>
+        <configuration>
+          <gitDescribe>
+            <always>true</always>
+          </gitDescribe>
+        </configuration>
+      </plugin>
+      <!--
+        static analysis
+      -->
+      <!-- checkstyle -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <skip>false</skip>
+        </configuration>
+      </plugin>
+      <!-- spotbugs -->
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+      </plugin>
+      <!-- PMD -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+      </plugin>
+      <!--
+        compilation
+      -->
+      <!-- compiler -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+            <path>
+              <groupId>com.google.dagger</groupId>
+              <artifactId>dagger-compiler</artifactId>
+              <version>${dagger.version}</version>
+            </path>
+          </annotationProcessorPaths>
+          <showDeprecation>true</showDeprecation>
+          <release>${java.version}</release>
+        </configuration>
+      </plugin>
+      <!--
+        test
+      -->
+      <!-- Unit Test -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      <!-- Integration Test -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+      </plugin>
+      <!-- Test Coverage -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+      <!--
+        packaging
+      -->
+      <!-- source -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+      <!-- jar -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+      </plugin>
+      <!-- javadoc -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <quiet>true</quiet>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
