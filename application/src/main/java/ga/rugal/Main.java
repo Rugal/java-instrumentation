@@ -17,5 +17,6 @@ public class Main {
    */
   public static void main(final String[] args) {
     LOG.info("Rugal Bernstein");
+    new Invokee().test();
   }
 }

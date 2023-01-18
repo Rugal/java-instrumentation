@@ -25,7 +25,11 @@ public class SampleTransformer implements ClassFileTransformer {
                           final Class<?> classBeingRedefined,
                           final ProtectionDomain protectionDomain,
                           final byte[] classfileBuffer) {
-
+    // for every class
+    // 1. create proxy class
+    // 2. create concrete class
+    // 3. for every invocation,
+    //      replace the method call with proxy method call
     byte[] byteCode = classfileBuffer;
     if (!className.equals("ga/rugal/Main")) {
       return byteCode;
