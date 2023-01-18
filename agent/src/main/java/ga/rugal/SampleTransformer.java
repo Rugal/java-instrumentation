@@ -33,7 +33,7 @@ public class SampleTransformer implements ClassFileTransformer {
       final CtClass ctClass = classPool.makeClass(new ByteArrayInputStream(classfileBuffer));
       final CtMethod[] methods = ctClass.getDeclaredMethods();
       for (var method : methods) {
-        method.insertAfter("System.out.println(\"adding end line..\");");
+        method.insertAfter("LOG.error(\"adding end line..\");");
       }
       byteCode = ctClass.toBytecode();
       ctClass.detach();

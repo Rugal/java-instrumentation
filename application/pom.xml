@@ -24,6 +24,14 @@
       <!--
           Test
       -->
+      <!-- spring boot plugin -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <agents>../agent/target/agent-1.0.0-SNAPSHOT-jar-with-dependencies.jar</agents>
+        </configuration>
+      </plugin>
       <!--
         packaging
       -->
@@ -34,7 +42,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <mainClass>ga.rugal.Main</mainClass>
-            </manifest>            
+            </manifest>
           </archive>
         </configuration>
       </plugin>
