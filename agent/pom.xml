@@ -27,9 +27,32 @@
 
   <build>
     <plugins>
+      <!--
+        packaging
+      -->
+      <!-- source -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+      <!-- jar -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+      </plugin>
+      <!-- javadoc -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <quiet>true</quiet>
+        </configuration>
+      </plugin>
+      <!-- with dependency -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.4.2</version>
         <configuration>
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
@@ -54,7 +77,6 @@
             <!-- append to the packaging phase. -->
             <goals>
               <goal>single</goal>
-              <!-- goals == mojos -->
             </goals>
           </execution>
         </executions>
