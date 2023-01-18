@@ -9,12 +9,14 @@ import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Sample transformer.
  *
  * @author sally
  */
+@Slf4j
 public class SampleTransformer implements ClassFileTransformer {
 
   @Override
@@ -33,13 +35,16 @@ public class SampleTransformer implements ClassFileTransformer {
       final CtClass ctClass = classPool.makeClass(new ByteArrayInputStream(classfileBuffer));
       final CtMethod[] methods = ctClass.getDeclaredMethods();
       for (var method : methods) {
-        method.insertAfter("LOG.error(\"adding end line..\");");
+        method.insertAfter(
+          """
+          LOG.error("Tenjin Descend");
+          """
+        );
       }
       byteCode = ctClass.toBytecode();
       ctClass.detach();
     } catch (final IOException | RuntimeException | CannotCompileException ex) {
-      System.out.println("Exception: " + ex);
-      ex.printStackTrace();
+      LOG.error("Exception: " + ex);
     }
     return byteCode;
   }
