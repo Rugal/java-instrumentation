@@ -14,9 +14,9 @@ public class Main {
    * Test main entrance.
    *
    * @param args input argument
+   * @throws Exception unable to load class
    */
-  public static void main(final String[] args) {
-    LOG.info("Rugal Bernstein");
-    new Invokee().test();
+  public static void main(final String[] args) throws Exception {
+    RugalEntrance.run();
   }
 }

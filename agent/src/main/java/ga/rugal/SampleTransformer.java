@@ -25,6 +25,7 @@ public class SampleTransformer implements ClassFileTransformer {
                           final Class<?> classBeingRedefined,
                           final ProtectionDomain protectionDomain,
                           final byte[] classfileBuffer) {
+    // LOG.info(className);
     // for every class
     // 1. create proxy class
     // 2. create concrete class

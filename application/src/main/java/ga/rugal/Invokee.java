@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 public class Invokee {
 
   public void test() {
-    LOG.info("In test");
+    LOG.info("In test [{}]", 1);
+    LOG.info(this.getClass().getClassLoader().toString());
   }
 }

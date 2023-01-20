@@ -28,9 +28,17 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <agents>../agent/target/agent-1.0.0-SNAPSHOT-jar-with-dependencies.jar</agents>
-        </configuration>
+        <executions>
+          <execution>
+            <id>main</id>
+          </execution>
+          <execution>
+            <id>agent</id>
+            <configuration>
+              <agents>../agent/target/agent-1.0.0-SNAPSHOT-jar-with-dependencies.jar</agents>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <!--
         packaging
